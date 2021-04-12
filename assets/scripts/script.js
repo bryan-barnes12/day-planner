@@ -1,4 +1,5 @@
-currentDate = dayjs().format("MMM Do, YYYY")
+let currentDate = dayjs().format("MMM Do, YYYY");
+let now = dayjs().hour();
 $("#currentDay").text(currentDate);
 let plans = {
     taskHour0: "",
@@ -18,15 +19,29 @@ function generateCal () {
     } else {
         plans = JSON.parse(localStorage.getItem('plans'));
     }
-    console.log(plans);
+    let hours = ['9:00 a.m.', '10:00 a.m.', '11:00 a.m.', '12:00 p.m.', '1:00 p.m.', '2:00 p.m.', '3:00 p.m.', '4:00 p.m.', '5:00 p.m.']
     for (let i = 0; i < 9; i++) {
         $(".container").append(`<div id="timeSlot${i}" class="timeBlock"></div>`);
-        // $(`#timeSlot${i}`).append(`<div class="noteBlock"><textarea id="taskHour${i}" /></div>`);
-        $(`#timeSlot${i}`).append(`<div class="buttonBlock"><input id="taskHour${i}" data-value="taskHour${i}" value="" /><button class="add" id="taskHourAdd${i}">✅</button><button class="remove" id="taskHourRem${i}">❌</button></div>`);
+        $(`#timeSlot${i}`).append(`<div class="label"><label>${hours[i]}</lable><span id="saveInfo${i}"></span></div>`);
+        $(`#timeSlot${i}`).append(`<div class="buttonBlock"><input id="taskHour${i}" data-value="taskHour${i}" value="" /><button class="add" id="taskHourAdd${i}" data-value="${i}">✅</button><button class="remove" id="taskHourRem${i}" data-value="${i}">❌</button></div>`);
         $("#taskHour" + i).val(plans["taskHour" + i]);
-    }
+        $("#taskHour" + i).attr("data-hour", (i + 9));
+        if (($("#taskHour" + i).attr("data-hour")) < now) {
+            $("#taskHour" + i).css("background-color", "#eeeeee");
+        }
+        if (($("#taskHour" + i).attr("data-hour")) == now) {
+            $("#taskHour" + i).css("background-color", "#e2a2a7");
+        }
+        if (($("#taskHour" + i).attr("data-hour")) > now) {
+            $("#taskHour" + i).css("background-color", "#b4f8c3");
+        }
+        }
 }
 generateCal();
+
+function showSaveMessage(x) {
+
+}
 
 function addPlans(event) {
     event.preventDefault();
@@ -51,4 +66,4 @@ $(".timeBlock").on('click', `.remove`, removePlans);
 
 
 
-console.log(document.body)
+console.log(document.getElementsByClassName("container"))

@@ -1,35 +1,44 @@
-/* .container {
+.container {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 0px;
+    margin: 0px 0px 10px 10px;
     padding: 0px;
-} */
-
-.timeBlock {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
     border: 1px solid black;
 }
 
-/* .noteBlock {
-    width: 90%;
-} */
-
-/* .buttonBlock {
+.buttonBlock {
     display: flex;
-    flex-direction: column;
-    width: 10%;
+    flex-direction: row;
+    width: 100%;
+    height: 60px;
+    padding: 0;
+    border: 1px solid black;
 }
 
-button {
+.noteBlock {
+    width: 90%;
+}
+
+.label {
+    margin: 5px;
+}
+
+input {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+
+
+/* button {
     width: 100%;
     height: 50px;
-}
+} */
 
 textarea {
     width: 100%;
     height: 100px;
-} */
+}
 

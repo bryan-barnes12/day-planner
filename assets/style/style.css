@@ -4,7 +4,6 @@
     width: 100%;
     margin: 0px 0px 10px 10px;
     padding: 0px;
-    border: 1px solid black;
 }
 
 .buttonBlock {
@@ -13,7 +12,6 @@
     width: 100%;
     height: 60px;
     padding: 0;
-    border: 1px solid black;
 }
 
 .noteBlock {
@@ -30,15 +28,4 @@ input {
     margin: 0;
 }
 
-
-
-/* button {
-    width: 100%;
-    height: 50px;
-} */
-
-textarea {
-    width: 100%;
-    height: 100px;
-}
 

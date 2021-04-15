@@ -1,18 +1,14 @@
+// Capturing current date and current hour for use later in the program.
 let currentDate = dayjs().format("MMM Do, YYYY");
 let now = dayjs().hour();
-$("#currentDay").text(currentDate);
-let plans = {
-    taskHour0: "",
-    taskHour1: "",
-    taskHour2: "",
-    taskHour3: "",
-    taskHour4: "",
-    taskHour5: "",
-    taskHour6: "",
-    taskHour7: "",
-    taskHour8: "",
-}
 
+// Displaying current date at the top of the page.
+$("#currentDay").text(currentDate);
+
+// Declaring an object to handle saves to local storage. If local storage record exists this isn't used.
+let plans = {taskHour0: "",taskHour1: "",taskHour2: "",taskHour3: "",taskHour4: "",taskHour5: "",taskHour6: "",taskHour7: "",taskHour8: ""}
+
+// Function for dynamically creating calendar.
 function generateCal () {
     if (!localStorage.getItem('plans')) {
         localStorage.setItem('plans',JSON.stringify(plans));
@@ -27,7 +23,7 @@ function generateCal () {
         $("#taskHour" + i).val(plans["taskHour" + i]);
         $("#taskHour" + i).attr("data-hour", (i + 9));
         if (($("#taskHour" + i).attr("data-hour")) < now) {
-            $("#taskHour" + i).css("background-color", "#eeeeee");
+            $("#taskHour" + i).css("background-color", "#cccccc");
         }
         if (($("#taskHour" + i).attr("data-hour")) == now) {
             $("#taskHour" + i).css("background-color", "#e2a2a7");
@@ -37,12 +33,10 @@ function generateCal () {
         }
         }
 }
+// Calling the calendar function.
 generateCal();
 
-function showSaveMessage(x) {
-
-}
-
+// Function for saving events to local storage.
 function addPlans(event) {
     event.preventDefault();
     let plansKey = $(this).siblings('input').attr('data-value');
@@ -51,6 +45,7 @@ function addPlans(event) {
     localStorage.setItem("plans", JSON.stringify(plans));
 }
 
+// Function for removing events from local storage.
 function removePlans(event) {
     event.preventDefault();
     let plansKey = $(this).siblings('input').attr('data-value');
@@ -60,10 +55,6 @@ function removePlans(event) {
     localStorage.setItem("plans", JSON.stringify(plans));
 }
 
-
+// Event listeners for the save/remove buttons.
 $(".timeBlock").on('click', `.add`, addPlans);
 $(".timeBlock").on('click', `.remove`, removePlans);
-
-
-
-console.log(document.getElementsByClassName("container"))
